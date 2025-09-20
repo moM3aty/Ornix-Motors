@@ -1,0 +1,556 @@
+/* =================================================================== */
+/* ORNIX MOTORS - ADMIN PANEL V2.0                 */
+/* =================================================================== */
+
+
+/* ======================= Global Styles & Variables ======================= */
+:root {
+    --primary-color: #d4af37;
+    --primary-color-rgb: 212, 175, 55;
+    --dark-bg: #101010; /* Darker background */
+    --secondary-dark-bg: #1a1a1a; /* Lighter dark for cards */
+    --border-color: #2c2c2c;
+    --light-text: #e0e0e0;
+    --white-color: #ffffff;
+    --font-family: 'Tajawal', sans-serif;
+    --sidebar-width: 260px;
+    --danger-color: #e74c3c;
+    --success-color: #2ecc71;
+    --info-color: #3498db;
+    --global-radius: 8px;
+    --global-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: var(--font-family);
+    background: var(--dark-bg);
+    color: var(--light-text);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--global-transition);
+}
+
+/* ======================= Login Page Styles ======================= */
+.login-page-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('/imges/car.png') no-repeat center center/cover;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.login-box {
+    background-color: var(--secondary-dark-bg);
+    padding: 40px;
+    border-radius: var(--global-radius);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border-top: 5px solid var(--primary-color);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+    .login-logo img {
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    .login-logo h2 {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--white-color);
+    }
+
+        .login-logo h2 span {
+            color: var(--primary-color);
+        }
+
+    .login-logo p {
+        color: #aaa;
+    }
+
+/* ======================= Form Styles (Global) ======================= */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+    .form-group label, .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #ccc;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 14px 18px;
+    background-color: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--global-radius);
+    color: var(--light-text);
+    transition: var(--global-transition);
+    font-size: 1rem;
+}
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(var(--primary-color-rgb), 0.2);
+    }
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.text-end {
+    text-align: left !important;
+}
+
+/* ======================= Buttons (Global) ======================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 30px;
+    border-radius: var(--global-radius);
+    font-weight: 700;
+    transition: var(--global-transition);
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+    .btn i {
+        line-height: 1;
+    }
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.2);
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(var(--primary-color-rgb), 0.3);
+    }
+
+.btn-block {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--white-color);
+}
+
+.btn-info {
+    background-color: var(--info-color);
+    color: var(--white-color);
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: var(--white-color);
+}
+
+    .btn-danger:hover, .btn-info:hover, .btn-secondary:hover {
+        filter: brightness(1.2);
+    }
+
+.btn-sm {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+}
+
+/* ======================= Admin Panel Layout ======================= */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--secondary-dark-bg);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--border-color);
+    z-index: 1001;
+    transition: var(--global-transition);
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+    .sidebar-header .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--white-color);
+    }
+
+        .sidebar-header .logo img {
+            height: 45px;
+        }
+
+        .sidebar-header .logo span {
+            color: var(--primary-color);
+        }
+
+.sidebar-nav {
+    flex-grow: 1;
+    padding-top: 20px;
+}
+
+    .sidebar-nav ul {
+        list-style: none;
+    }
+
+    .sidebar-nav a {
+        display: flex;
+        align-items: center;
+        padding: 15px 25px;
+        margin: 0 10px 5px 10px;
+        color: var(--light-text);
+        border-radius: var(--global-radius);
+        position: relative;
+    }
+
+        .sidebar-nav a i {
+            margin-left: 15px;
+            color: #888;
+            transition: var(--global-transition);
+            font-size: 1.2rem;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: var(--dark-bg);
+            color: var(--primary-color);
+        }
+
+            .sidebar-nav a:hover i {
+                color: var(--primary-color);
+            }
+
+    .sidebar-nav li.active a {
+        background-color: var(--primary-color);
+        color: var(--dark-bg);
+        font-weight: 700;
+    }
+
+        .sidebar-nav li.active a i {
+            color: var(--dark-bg);
+        }
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #444;
+    color: var(--light-text);
+    width: 100%;
+    transition: var(--global-transition);
+}
+
+    .logout-btn:hover {
+        background-color: var(--danger-color);
+        color: var(--white-color);
+        border-color: var(--danger-color);
+    }
+
+.main-content {
+    margin-right: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    padding: 30px;
+    transition: var(--global-transition);
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+    .main-header h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+    }
+
+/* ======================= General Components ======================= */
+.admin-card {
+    background-color: var(--secondary-dark-bg);
+    border-radius: var(--global-radius);
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.card-header {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col-md-6 {
+    width: 50%;
+    padding: 0 15px;
+}
+
+.col-md-12 {
+    width: 100%;
+    padding: 0 15px;
+}
+
+/* Dashboard Cards */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.dashboard-card {
+    background: linear-gradient(145deg, #222, #1a1a1a);
+    border-radius: var(--global-radius);
+    padding: 30px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    transition: var(--global-transition);
+    border: 1px solid var(--border-color);
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        border-color: var(--primary-color);
+    }
+
+.card-icon {
+    font-size: 2.5rem;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: var(--global-transition);
+}
+
+.dashboard-card:hover .card-icon {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.settings-icon {
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+}
+
+.achievement-icon {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--info-color);
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    color: var(--white-color);
+    margin-bottom: 8px;
+}
+
+.card-content p {
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.card-link {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* NEW Achievement Cards Grid */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.achievement-card {
+    background: var(--dark-bg);
+    border-radius: var(--global-radius);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: var(--global-transition);
+}
+
+    .achievement-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+.achievement-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.achievement-card-body {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+    .achievement-card-body p {
+        color: #aaa;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+.achievement-card-actions {
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.achievement-thumb-lg {
+    max-width: 100%;
+    height: auto;
+    max-height: 250px;
+    border-radius: var(--global-radius);
+    margin-top: 10px;
+}
+
+/* ======================= Modals ======================= */
+.modal {
+    z-index: 1050;
+}
+
+.modal-backdrop {
+    z-index: 1040;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--secondary-dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--global-radius);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+.modal-title {
+    color: var(--primary-color);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+}
+
+/* ======================= Alerts & Validation ======================= */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--global-radius);
+}
+
+.alert-danger {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+.alert-success {
+    background-color: rgba(46, 204, 113, 0.1);
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.text-danger {
+    font-size: 0.9rem;
+    color: var(--danger-color);
+}
+
+/* ======================= Responsive Design ======================= */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(100%);
+    }
+    /* Hide sidebar off-screen */
+    .main-content {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .col-md-6 {
+        width: 100%;
+    }
+
+    .main-header h1 {
+        font-size: 1.8rem;
+    }
+}

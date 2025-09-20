@@ -1,0 +1,42 @@
+﻿@model SiteSettings
+@{
+    ViewData["Title"] = "إدارة إعدادات الموقع";
+}
+
+<form asp-action="Index" method="post">
+    <div asp-validation-summary="All" class="alert alert-danger" style="@(ViewData.ModelState.IsValid ? "display:none;" : "")"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="admin-card">
+        <h4 class="card-header">معلومات التواصل</h4>
+        <div class="row">
+            <div class="col-md-6"><div class="form-group"><label asp-for="PhoneNumber1"></label><input asp-for="PhoneNumber1" class="form-control" /></div></div>
+            <div class="col-md-6"><div class="form-group"><label asp-for="PhoneNumber2"></label><input asp-for="PhoneNumber2" class="form-control" /></div></div>
+            <div class="col-md-6"><div class="form-group"><label asp-for="WhatsAppNumber"></label><input asp-for="WhatsAppNumber" class="form-control" placeholder="مثال: 201284828841" /></div></div>
+            <div class="col-md-6"><div class="form-group"><label asp-for="Email"></label><input asp-for="Email" class="form-control" /></div></div>
+        </div>
+    </div>
+
+    <div class="admin-card">
+        <h4 class="card-header">روابط التواصل الاجتماعي</h4>
+        <div class="row">
+            <div class="col-md-6"><div class="form-group"><label asp-for="FacebookLink"></label><input asp-for="FacebookLink" class="form-control" /></div></div>
+            <div class="col-md-6"><div class="form-group"><label asp-for="InstagramLink"></label><input asp-for="InstagramLink" class="form-control" /></div></div>
+        </div>
+    </div>
+
+    <div class="admin-card">
+        <h4 class="card-header">العناوين والخرائط</h4>
+        <div class="row">
+            <div class="col-md-6"><div class="form-group"><label asp-for="AlexAddress"></label><input asp-for="AlexAddress" class="form-control" /></div></div>
+            <div class="col-md-6"><div class="form-group"><label asp-for="CairoAddress"></label><input asp-for="CairoAddress" class="form-control" /></div></div>
+            <div class="col-md-12"><div class="form-group"><label asp-for="AlexLocationUrl"></label><textarea asp-for="AlexLocationUrl" class="form-control" rows="4"></textarea></div></div>
+            <div class="col-md-12"><div class="form-group"><label asp-for="CairoLocationUrl"></label><textarea asp-for="CairoLocationUrl" class="form-control" rows="4"></textarea></div></div>
+        </div>
+    </div>
+
+    <div class="form-group mt-4">
+        <button type="submit" class="btn btn-primary btn-lg">حفظ التغييرات</button>
+    </div>
+</form>
+

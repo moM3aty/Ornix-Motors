@@ -1,0 +1,190 @@
+﻿@model IEnumerable<Achievement>
+
+@{
+    ViewData["Title"] = "إدارة الإنجازات";
+}
+
+<!-- Success/Error Messages -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<div class="admin-card">
+    <div class="card-header">
+        <span>قائمة الإنجازات</span>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+            <i class="fas fa-plus"></i> إضافة إنجاز جديد
+        </button>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="achievements-grid">
+            @foreach (var item in Model)
+            {
+                <div class="achievement-card">
+                    <img src="~/images/achievements/@item.ImageUrl" class="achievement-card-img" alt="Achievement Image">
+                    <div class="achievement-card-body">
+                        <p>@item.Description</p>
+                    </div>
+                    <div class="achievement-card-actions">
+                        <button type="button" class="btn btn-info btn-sm edit-btn" data-id="@item.Id" data-bs-toggle="modal" data-bs-target="#editModal">
+                            <i class="fas fa-edit"></i> تعديل
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm delete-btn" data-id="@item.Id" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-center mt-4">لا توجد إنجازات مضافة حالياً. قم بإضافة أول إنجاز لك!</p>
+    }
+</div>
+
+<!-- ======================= MODALS ======================= -->
+<!-- 1. Create Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form asp-action="CreateOrEdit" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">إضافة إنجاز جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="Id" value="0" />
+                    <div class="form-group mb-3">
+                        <label for="createImageFile" class="form-label">الصورة</label>
+                        <input name="ImageFile" type="file" class="form-control" id="createImageFile" onchange="previewImage(event, 'createImagePreview')" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>معاينة الصورة</label>
+                        <img id="createImagePreview" src="#" alt="Image Preview" style="display:none; width: 100%; border-radius: 5px; margin-top: 10px;" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="createDescription" class="form-label">الوصف</label>
+                        <textarea name="Description" class="form-control" id="createDescription" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">حفظ الإنجاز</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 2. Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form asp-action="CreateOrEdit" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">تعديل الإنجاز</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="editModalBody">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- 3. Delete Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">تأكيد الحذف</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>هل أنت متأكد من رغبتك في حذف هذا الإنجاز؟ لا يمكن التراجع عن هذا الإجراء.</p>
+            </div>
+            <div class="modal-footer">
+                <form id="deleteForm" asp-action="Delete" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="deleteAchievementId" name="id" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-danger">نعم، قم بالحذف</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        // Universal function to preview images
+        function previewImage(event, previewElementId) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById(previewElementId);
+                if(output){
+                    output.src = reader.result;
+                    output.style.display = 'block';
+                }
+            };
+            if(event.target.files.length > 0){
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        }
+
+        $(document).ready(function () {
+            // Logic for Edit Button: Fetch data and populate the edit modal
+            $('.edit-btn').on('click', function () {
+                var achievementId = $(this).data('id');
+                var modalBody = $('#editModalBody');
+                modalBody.html('<p class="text-center py-5">جاري تحميل البيانات...</p>');
+
+                $.get('/Admin/Achievements/GetAchievement/' + achievementId, function (data) {
+                    if (data) {
+                        var formHtml = `
+                            <input type="hidden" name="Id" value="${data.id}" />
+                            <div class="form-group mb-3">
+                                <label class="form-label">الصورة الحالية</label>
+                                <div><img id="editImagePreview" src="/images/achievements/${data.imageUrl}" class="achievement-thumb-lg" /></div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="editImageFile" class="form-label">تغيير الصورة (اختياري)</label>
+                                <input type="file" name="ImageFile" id="editImageFile" class="form-control" onchange="previewImage(event, 'editImagePreview')" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="editDescription" class="form-label">الوصف</label>
+                                <textarea name="Description" id="editDescription" class="form-control" rows="3" required>${data.description}</textarea>
+                            </div>`;
+                        modalBody.html(formHtml);
+                    } else {
+                         modalBody.html('<p class="text-center text-danger py-5">حدث خطأ أثناء جلب البيانات.</p>');
+                    }
+                });
+            });
+
+            // Logic for Delete Button: Set the ID in the delete confirmation modal
+            $('.delete-btn').on('click', function () {
+                var achievementId = $(this).data('id');
+                $('#deleteAchievementId').val(achievementId);
+            });
+        });
+    </script>
+}
+

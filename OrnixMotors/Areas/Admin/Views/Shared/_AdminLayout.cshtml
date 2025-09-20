@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OrnixMotors Admin</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Your Custom CSS File -->
+    <link rel="stylesheet" href="~/css/admin-style.css">
+    <link href="~/imges/logo.png" rel="icon" type="image/x-icon" />
+</head>
+<body>
+    <div class="admin-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="@Url.Action("Index", "Dashboard")" >
+                    <img src="~/imges/logo.png" alt="Ornex Motors Icon" width="200px" style="margin:auto">
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Dashboard" ? "active" : "")">
+                        <a asp-action="Index" asp-controller="Dashboard"><i class="fas fa-tachometer-alt"></i> الرئيسية</a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Settings" ? "active" : "")">
+                        <a asp-action="Index" asp-controller="Settings"><i class="fas fa-cog"></i> إعدادات الموقع</a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Achievements" ? "active" : "")">
+                        <a asp-action="Index" asp-controller="Achievements"><i class="fas fa-trophy"></i> الإنجازات</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <form asp-action="Logout" asp-controller="Account" method="post">
+                    <button type="submit" class="btn logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+                </form>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>@ViewData["Title"]</h1>
+                <div class="header-user">
+                    <i class="fas fa-user-shield"></i>
+                    <span>@User.Identity.Name</span>
+                </div>
+            </header>
+            <div class="content-body">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

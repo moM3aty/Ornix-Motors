@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "لوحة التحكم الرئيسية";
+}
+
+<div class="dashboard-grid">
+    <div class="dashboard-card">
+        <div class="card-icon settings-icon">
+            <i class="fas fa-cog"></i>
+        </div>
+        <div class="card-content">
+            <h3>إعدادات الموقع</h3>
+            <p>إدارة معلومات التواصل، روابط السوشيال ميديا، العناوين، وغيرها.</p>
+            <a asp-action="Index" asp-controller="Settings" class="card-link">الانتقال للإعدادات &rarr;</a>
+        </div>
+    </div>
+    <div class="dashboard-card">
+        <div class="card-icon achievement-icon">
+            <i class="fas fa-trophy"></i>
+        </div>
+        <div class="card-content">
+            <h3>إدارة الإنجازات</h3>
+            <p>إضافة، تعديل، أو حذف الصور والأوصاف في قسم "إنجازاتنا".</p>
+            <a asp-action="Index" asp-controller="Achievements" class="card-link">إدارة الإنجازات &rarr;</a>
+        </div>
+    </div>
+</div>

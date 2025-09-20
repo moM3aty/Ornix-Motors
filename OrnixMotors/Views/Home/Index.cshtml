@@ -1,0 +1,334 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "الرئيسية";
+    var settings = Model.SiteSettings;
+    var achievements = Model.Achievements;
+}
+
+<!-- Hero Section -->
+<section id="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="animate-on-load">تجربة تنقل استثنائية <br> تليق بك</h1>
+            <p class="animate-on-load">
+                فخامة، راحة، وأمان في كل رحلة. أورنيكس موتورز، خيارك الأول لخدمات
+                الليموزين في مصر.
+            </p>
+            <a href="tel:@settings.PhoneNumber1" class="btn btn-primary btn-lg animate-on-load">اطلب رحلتك الآن</a>
+        </div>
+    </div>
+</section>
+
+<!-- Airport Services Highlight Section -->
+<section id="airport-service" class="section-padding highlight-section">
+    <div class="container">
+        <div class="highlight-grid animate-on-scroll">
+            <div class="highlight-icon">
+                <i class="fas fa-plane-arrival"></i>
+            </div>
+            <div class="highlight-content">
+                <h2>خدمات النقل من وإلى جميع المطارات</h2>
+                <p>
+                    نقدم خدمة ليموزين موثوقة وفخمة للذهاب والعودة من مطار القاهرة، مطار برج العرب بالأسكندرية،
+                    وجميع المطارات المصرية. ابدأ رحلتك أو عد إلى منزلك براحة وأناقة.
+                </p>
+            </div>
+            <div class="highlight-action">
+                <a href="#contact" class="btn btn-primary">احجز مشوارك للمطار</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section id="about" class="section-padding">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content animate-on-scroll">
+                <div class="section-title text-right">
+                    <span class="subtitle">About Ornix Motors</span>
+                    <h2>رحلات مطار موثوقة وتنقلات فاخرة</h2>
+                </div>
+                <p>
+                    في أورنيكس موتورز، نتفهم أهمية الوصول إلى المطار ومغادرته بكل راحة ودقة. نحن متخصصون في
+                    تقديم خدمة ليموزين استثنائية من وإلى جميع مطارات مصر، مع ضمان وصولك في الموعد المحدد وبأعلى
+                    مستويات الفخامة.
+                </p>
+                <p>
+                    أسطولنا الحديث وفريقنا من السائقين المحترفين جاهزون لخدمتك في جميع تنقلاتك، سواء كانت رحلات
+                    عمل، مناسبات خاصة، أو مشاوير داخلية.
+                </p>
+                <a href="#services" class="btn btn-secondary">اكتشف خدماتنا</a>
+            </div>
+            <div class="about-image animate-on-scroll">
+                <img src="~/imges/4609.jpg_wh860.jpg" alt="داخلية سيارة ليموزين فاخرة">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fleet Section -->
+<section id="fleet" class="section-padding">
+    <div class="container">
+        <div class="section-title">
+            <span class="subtitle">Our Fleet</span>
+            <h2>أسطول سياراتنا الفاخر</h2>
+        </div>
+        <div class="fleet-grid">
+            <!-- Car 1 -->
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/car.png" alt="Mercedes S-Class">
+                </div>
+                <div class="car-info">
+                    <h3>Mercedes S-Class</h3>
+                    <p>الخيار الأمثل لرحلات رجال الأعمال والوفود الرسمية.</p>
+                </div>
+            </div>
+            <!-- Car 2 -->
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/سياره2.jpg" alt="Cadillac Escalade">
+                </div>
+                <div class="car-info">
+                    <h3>Cadillac Escalade</h3>
+                    <p>مساحة رحبة وفخامة لا تضاهى، مثالية للتنقلات العائلية والمجموعات.</p>
+                </div>
+            </div>
+            <!-- Car 3 -->
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/سياره 3.jpeg" alt="BMW 7 Series">
+                </div>
+                <div class="car-info">
+                    <h3>BMW 7 Series</h3>
+                    <p>تجمع بين الأداء الرياضي والأناقة الفائقة لتجربة قيادة ممتعة.</p>
+                </div>
+            </div>
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/سياره 4.jpeg" alt="Mercedes S-Class">
+                </div>
+                <div class="car-info">
+                    <h3>Mercedes S-Class</h3>
+                    <p>الخيار الأمثل لرحلات رجال الأعمال والوفود الرسمية.</p>
+                </div>
+            </div>
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/سياره5.jpg" alt="Mercedes S-Class">
+                </div>
+                <div class="car-info">
+                    <h3>Mercedes S-Class</h3>
+                    <p>الخيار الأمثل لرحلات رجال الأعمال والوفود الرسمية.</p>
+                </div>
+            </div>
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/سياره 6.jpg" alt="Mercedes S-Class">
+                </div>
+                <div class="car-info">
+                    <h3>Mercedes S-Class</h3>
+                    <p>الخيار الأمثل لرحلات رجال الأعمال والوفود الرسمية.</p>
+                </div>
+            </div>
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/سياره7.jpg" alt="Mercedes S-Class">
+                </div>
+                <div class="car-info">
+                    <h3>Mercedes S-Class</h3>
+                    <p>الخيار الأمثل لرحلات رجال الأعمال والوفود الرسمية.</p>
+                </div>
+            </div>
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/سياره8.webp" alt="Mercedes S-Class">
+                </div>
+                <div class="car-info">
+                    <h3>Mercedes S-Class</h3>
+                    <p>الخيار الأمثل لرحلات رجال الأعمال والوفود الرسمية.</p>
+                </div>
+            </div>
+            <div class="car-card animate-on-scroll">
+                <div class="car-image">
+                    <img src="~/imges/car.png" alt="Mercedes S-Class">
+                </div>
+                <div class="car-info">
+                    <h3>Mercedes S-Class</h3>
+                    <p>الخيار الأمثل لرحلات رجال الأعمال والوفود الرسمية.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</section>
+<!-- Services Section -->
+<section id="services" class="section-padding">
+    <div class="container">
+        <div class="section-title">
+            <span class="subtitle">Our Services</span>
+            <h2>خدمات مصممة لراحتك وفخامتك</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-plane-departure"></i></div>
+                <h3>التوصيل من وإلى المطار</h3>
+                <p>نضمن لك وصولًا مريحًا وفي الوقت المحدد لرحلتك.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-ring"></i></div>
+                <h3>حفلات الزفاف والمناسبات</h3>
+                <p>أضف لمسة من الفخامة ليومك الخاص بسياراتنا الأنيقة.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                <h3>رحلات رجال الأعمال</h3>
+                <p>خدمة تنقل راقية وموثوقة تعكس صورة احترافية لشركتكم.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h3>الجولات السياحية الخاصة</h3>
+                <p>استكشف معالم المدينة بأناقة وراحة مع سائقينا الخبراء.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section id="why-us" class="section-padding">
+    <div class="container">
+        <div class="why-us-grid">
+            <div class="why-us-image animate-on-scroll">
+                <img src="~/imges/سياره 6.jpg" alt="سائق ليموزين محترف">
+            </div>
+            <div class="why-us-content animate-on-scroll">
+                <div class="section-title text-right">
+                    <span class="subtitle">Why Choose Us</span>
+                    <h2>احترافية وموثوقية <br> يمكنك الاعتماد عليها</h2>
+                </div>
+                <p>نحن لا نقدم مجرد خدمة نقل، بل نقدم تجربة متكاملة مبنية على الدقة، الأمان، والاهتمام بأدق التفاصيل.</p>
+                <ul class="features-list">
+                    <li><i class="fas fa-user-tie"></i><div><h4>سائقون محترفون</h4><p>فريق من السائقين المدربين على أعلى مستوى.</p></div></li>
+                    <li><i class="fas fa-clock"></i><div><h4>دقة في المواعيد</h4><p>نلتزم بالمواعيد بشكل صارم لضمان وصولك دون تأخير.</p></div></li>
+                    <li><i class="fas fa-shield-alt"></i><div><h4>راحة وأمان</h4><p>أسطولنا مجهز بأحدث معايير السلامة والراحة.</p></div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats / Achievements Section -->
+<section id="stats" class="section-padding">
+    <div class="container">
+        <div class="section-title">
+            <span class="subtitle">Our Achievements</span>
+            <h2>إنجازاتنا بالأرقام</h2>
+            <p>نفخر بما حققناه من نجاحات وثقة عملائنا.</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card animate-on-scroll">
+                <i class="fas fa-smile-beam"></i>
+                <h3 class="counter" data-target="5746">0</h3>
+                <p>عميل راضٍ</p>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <i class="fas fa-route"></i>
+                <h3 class="counter" data-target="15000">0</h3>
+                <p>رحلة مكتملة</p>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <i class="fas fa-calendar-alt"></i>
+                <h3 class="counter" data-target="6">0</h3>
+                <p>سنوات من الخبرة</p>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <i class="fas fa-user-shield"></i>
+                <h3 class="counter" data-target="25">0</h3>
+                <p>سائق محترف</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dynamic Achievements Section -->
+@if (achievements != null && achievements.Any())
+{
+    <section id="achievements-dynamic" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">Our Achievements</span>
+                <h2>إنجازاتنا</h2>
+                <p>نفخر بما حققناه من نجاحات وثقة عملائنا.</p>
+            </div>
+            <div class="achievements-container">
+                @{
+                    var i = 0;
+                }
+                @foreach (var achievement in achievements)
+                {
+                    <div class="achievement-row animate-on-scroll @(i % 2 != 0 ? "reverse" : "")">
+                        <div class="achievement-image">
+                            <img src="~/images/achievements/@achievement.ImageUrl" alt="@achievement.Description" />
+                        </div>
+                        <div class="achievement-content">
+                            <h3>@achievement.Description</h3>
+                            <!-- You can add more text here if needed -->
+                        </div>
+                    </div>
+                    i++;
+                }
+            </div>
+        </div>
+    </section>
+}
+
+
+<!-- Contact Section -->
+<section id="contact" class="section-padding">
+    <div class="container text-center">
+        <div class="section-title">
+            <span class="subtitle">Book Your Ride</span>
+            <h2>احجز رحلتك الفاخرة الآن</h2>
+        </div>
+        <p>فريقنا جاهز لتنسيق كافة تفاصيل رحلتك. تواصل معنا عبر الهاتف أو واتساب للحجز والاستفسار.</p>
+        <div class="contact-buttons">
+            <a href="tel:@settings.PhoneNumber1" class="btn cta-button">
+                <i class="fas fa-phone-alt"></i>
+                <div><span>اتصل بنا</span><strong>@settings.PhoneNumber1</strong></div>
+            </a>
+            <a href="https://wa.me/@settings.WhatsAppNumber" target="_blank" class="btn cta-button">
+                <i class="fab fa-whatsapp"></i>
+                <div><span>واتساب</span><strong>@settings.PhoneNumber2</strong></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Locations Section -->
+<section id="locations" class="section-padding">
+    <div class="container">
+        <div class="section-title">
+            <span class="subtitle">Our Branches</span>
+            <h2>تفضل بزيارتنا أو تواصل معنا</h2>
+        </div>
+        <div class="locations-grid">
+            <div class="location-card animate-on-scroll">
+                <h3>فرع الأسكندرية</h3>
+                <p><i class="fas fa-map-marker-alt"></i> @settings.AlexAddress</p>
+                <div class="map-container">
+                    @Html.Raw(settings.AlexLocationUrl)
+                </div>
+            </div>
+            <div class="location-card animate-on-scroll">
+                <h3>فرع القاهرة</h3>
+                <p><i class="fas fa-map-marker-alt"></i> @settings.CairoAddress</p>
+                <div class="map-container">
+                    @Html.Raw(settings.CairoLocationUrl)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

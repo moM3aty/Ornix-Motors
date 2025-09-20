@@ -1,0 +1,128 @@
+﻿@inject OrnixMotors.Data.ApplicationDbContext Context
+@{
+    var settings = Context.SiteSettings.FirstOrDefault();
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ornix Motors - @ViewData["Title"]</title>
+    <meta name="description"
+          content="أورنيكس موتورز لخدمات الليموزين، نقدم خدمات النقل الفاخر لرجال الأعمال، حفلات الزفاف، والانتقالات من وإلى المطار بأحدث السيارات وسائقين محترفين.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Your CSS File -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <link href="~/imges/logo.png" rel="icon" type="image/x-icon" />
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a asp-action="Index" asp-controller="Home" class="logo">
+                    <img src="~/imges/logo.png" alt="Ornex Motors Icon">
+                    <div>Ornix<span>Motors</span></div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#hero">الرئيسية</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#fleet">أسطولنا</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                @if (settings != null)
+                {
+                    <a href="tel:@settings.PhoneNumber1" class="btn btn-primary nav-btn">احجز الآن</a>
+                }
+                <div class="menu-icon"><i class="fas fa-bars"></i></div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    @if (settings != null)
+    {
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- About Column -->
+                    <div class="footer-col">
+                        <a href="#" class="logo footer-logo">
+                            <img src="~/imges/logo.png" alt="Ornex Motors Icon">
+                            <div>Ornix<span>Motors</span></div>
+                        </a>
+                        <p>شركة رائدة في تقديم خدمات النقل الفاخر في مصر، بخبرة في توفير سيارات حديثة وسائقين محترفين.</p>
+                    </div>
+
+                    <!-- Quick Links Column -->
+                    <div class="footer-col">
+                        <h4>روابط سريعة</h4>
+                        <ul>
+                            <li><a href="#hero">الرئيسية</a></li>
+                            <li><a href="#about">من نحن</a></li>
+                            <li><a href="#fleet">أسطولنا</a></li>
+                            <li><a href="#services">خدماتنا</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info Column (Dynamic) -->
+                    <div class="footer-col">
+                        <h4>تواصل معنا</h4>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fas fa-phone-alt"></i>
+                                <div>
+                                    <a href="tel:@settings.PhoneNumber1">@settings.PhoneNumber1</a><br>
+                                    <a href="tel:@settings.PhoneNumber2">@settings.PhoneNumber2</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:@settings.Email">@settings.Email</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Social Media Column (Dynamic) -->
+                    <div class="footer-col">
+                        <h4>تابعنا على</h4>
+                        <div class="social-icons">
+                            <a href="@settings.FacebookLink" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="@settings.InstagramLink" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://wa.me/@settings.WhatsAppNumber" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; @DateTime.Now.Year لـ Ornix Motors Limousine</p>
+            </div>
+        </footer>
+
+        <!-- Floating Buttons (Dynamic) -->
+        <div class="floating-buttons">
+            <a href="tel:@settings.PhoneNumber1" class="call-btn"><i class="fas fa-phone-alt"></i></a>
+            <a href="https://wa.me/@settings.WhatsAppNumber" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    }
+
+    <script src="~/js/script.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
