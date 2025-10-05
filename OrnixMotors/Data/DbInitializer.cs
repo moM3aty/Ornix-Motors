@@ -22,11 +22,11 @@ namespace OrnixMotors.Data
             {
                 adminUser = new ApplicationUser
                 {
-                    UserName = "admin@ornix.com",
-                    Email = "admin@ornix.com",
+                    UserName = "YourUser",
+                    Email = "yourE-mail",
                     EmailConfirmed = true
                 };
-                var result = await userManager.CreateAsync(adminUser, "Ornix@12345");
+                var result = await userManager.CreateAsync(adminUser, "yourPassword");
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(adminUser, "Admin");
